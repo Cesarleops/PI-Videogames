@@ -1,6 +1,7 @@
-import {Link} from 'react-router-dom'
 
+import {Link} from 'react-router-dom'
 export const LandingPage = () => {
+
   return(
     <main>
        <section>

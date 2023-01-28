@@ -1,0 +1,10 @@
+
+.pagination{
+    display: flex;
+}
+
+
+.pages {
+    list-style: none;
+    display: flex;
+}

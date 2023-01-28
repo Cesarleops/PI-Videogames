@@ -1,12 +1,12 @@
-
+import { Link } from "react-router-dom"
+import './gameCard.css'
 export const GameCard = ({name,image, genres, id}) => {
-
     return(
         <div key={id}>
             <p>
              {name}
             </p>
-           <img src={image} alt="background ilustration"/>
+           <img className="game-image" src={image} alt="background ilustration"/>
            <ul>
            {
             genres.map(g => (
@@ -14,6 +14,9 @@ export const GameCard = ({name,image, genres, id}) => {
             ))
            }
            </ul>
+           <Link to={`/game/${id}`}>
+             <p>+</p>
+           </Link>
            
         </div>
     )

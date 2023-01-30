@@ -11,10 +11,7 @@ const addVideogame = async(req,res) => {
             platforms
         })
         await newGame.setGenres(genreIds)
-        res.json({
-            msg: 'OK',
-            newGame
-        })
+        res.json(newGame)
     } catch (error) {
         console.log(error)
         res.json({

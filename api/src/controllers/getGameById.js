@@ -5,10 +5,16 @@ const getGameById = async(req,res) => {
     const {id} = req.params
     try {
         if(id.includes('-')){
-            const createdGame = await Videogame.findByPk(id , {include: Genre})
-            return  res.json({
-                msg: 'OK',
-                createdGame
+            const game = await Videogame.findByPk(id , {include: Genre})
+            console.log('detalles del juego', game)
+             return  res.json({
+                _id: game.id,
+                name: game.name,
+                description : game.description,
+                platforms: game.platforms,
+                genres: game.genres,
+                released: game.released,
+                rating: game.rating
             })
         }
         const {data} = await axios.get(`https://api.rawg.io/api/games/${id}?&key=${process.env.API_KEY}`)

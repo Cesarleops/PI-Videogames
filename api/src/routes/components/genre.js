@@ -1,8 +1,8 @@
 
 const {Router} = require('express')
-
+const {getAllGenres} = require('../../controllers')
 const router = Router()
 
-router.get('/genres')
+router.get('/', getAllGenres)
 
 module.exports = router

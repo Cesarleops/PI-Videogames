@@ -25,25 +25,44 @@ export const getGameById = (payload) => {
     }
 }
 
-export const alphabeticOrder = (payload) => {
+export const alphabeticOrder = () => {
     return {
         type: "ALPHABETIC_ORDER",
-        payload
+
     }
 }
 
-
-export const orderByRating = (payload) => {
+export const reverseAlphabeticOrder = () => {
     return {
-        type: "RATING_ORDER",
-        payload
+        type: "REVERSE_ALPHABETIC_ORDER",
+        
     }
 }
 
-export const orderByOrigin = (payload) => {
+export const orderByMostLiked = () => {
     return {
-        type: 'ORDER_BY_ORIGIN',
-        payload
+        type: "MOST_LIKED",
+    
+    }
+}
+
+export const orderByLessLiked = () => {
+    return {
+        type: "LESS_LIKED",
+    }
+}
+
+export const filterByOriginals = () => {
+    return {
+        type: 'FILTER_BY_ORIGINALS',
+        
+    }
+}
+
+export const filterByCreated = () => {
+    return {
+        type: 'FILTER_BY_CREATED',
+        
     }
 }
 
@@ -51,5 +70,19 @@ export const filterByGenre = (payload) => {
     return {
         type: 'FILTER_BY_GENRE',
         payload
+    }
+}
+
+export const getGameByName = (payload) => {
+    return {
+        type: 'GAME_BY_NAME',
+        payload
+    }
+}
+
+export const removeFilters = () => {
+    return {
+        type: 'REMOVE_FILTERS',
+        
     }
 }

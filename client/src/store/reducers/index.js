@@ -6,7 +6,7 @@ export const initialState = {
     isLoading: false,
     genres: [],
     platforms: ["Ps5", "Ps4", "PC" , "IOS", "Android", "Xbox One", "Xbox Series X|S", "Nintendo Switch"],
-    newGames:[]
+    filteredGames:[]
 }
 
 export const rootReducer = (state=initialState,action) => {
@@ -20,7 +20,7 @@ export const rootReducer = (state=initialState,action) => {
             return {
                  ...state, 
                  games: action.payload,
-                 newGames: action.payload
+                 filteredGames: action.payload
             }
         
         case 'GET_GENRES' : 
@@ -34,28 +34,61 @@ export const rootReducer = (state=initialState,action) => {
                  gameDetail: action.payload
             }
         case 'ALPHABETIC_ORDER':
-            return {
-                 ...state, 
-                 games: action.payload
-                       }
-        case 'RATING_ORDER':
-            return {
-                 ...state, 
-                 games: action.payload 
-                        }
+                return {
+                    ...state, 
+                    games: state.games.sort((a,b) => {
+                        if(a.name > b.name) return 1
+                        if(a.name < b.name) return -1
+                        return 0
+                   })}
 
-        case 'ORDER_BY_ORIGIN':
+        case "REVERSE_ALPHABETIC_ORDER":
             return {
                 ...state,
-                games: action.payload
+                games: state.games.sort((a,b) => {
+                    if(a.name > b.name) return -1
+                    if(a.name < b.name) return 1
+                    return 0
+                })
             }
-        
+        case 'MOST_LIKED':
+            return {
+                 ...state, 
+                 games: state.games.sort((a,b) => a.rating-b.rating)
+                        }
+
+        case 'LESS_LIKED':
+            return {
+               ...state, 
+                games: state.games.sort((a,b) => b.rating-a.rating)
+                                        }
+        case 'FILTER_BY_ORIGINALS':
+            return {
+                ...state,
+                games: state.filteredGames.filter(g => typeof g.id === 'number')
+            }
+        case 'FILTER_BY_CREATED':
+                return {
+                    ...state,
+                    games: state.filteredGames.filter(g => typeof g.id === 'string')
+                }
         case 'FILTER_BY_GENRE':
             return {
                 ...state,
-                games: action.payload
+                games: state.filteredGames.filter(game => game.genres.find(g => g.name === action.payload))
             }
        
+        case 'GAME_BY_NAME':
+            return {
+                ...state,
+                games: action.payload
+            }
+
+        case 'REMOVE_FILTERS':
+            return {
+                ...state,
+                games: state.filteredGames
+            }
         default: return initialState
     }
 }

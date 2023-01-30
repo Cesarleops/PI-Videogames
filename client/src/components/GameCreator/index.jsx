@@ -9,7 +9,7 @@ export const CreateNewGame = () => {
     const dispatch = useDispatch()
     useEffect(()=> {
         dispatch(fetchGenres())
-     }, [])
+     }, [dispatch])
     const genres = useSelector(state => state.genres)
     const platforms = useSelector(state => state.platforms)
     const [initialForm, setInitialForm]=useState({
@@ -71,42 +71,53 @@ export const CreateNewGame = () => {
     
 
     return(
-        <main className="gameCreation">
-            <form onSubmit={handleSubmit}>
-            <label htmlFor="name">Name of your game</label>
-            <input type="text" id="name" name="name" value={initialForm.name} onChange={handleInput}/>
-            <label htmlFor="date">Release date</label>
-            <input type="text" id="date" name="released" value={initialForm.released} onChange={handleInput}/>
-            <label htmlFor="rating">Rating</label>
-            <input type="number" id="rating" name="rating" value={initialForm.rating} onChange={handleInput} />
-            <label htmlFor="description">Describe your game</label>
+        <main className="mainCreation">
+            <section className="gameCreation">
+            <form onSubmit={handleSubmit} className="creationForm">
+            <label htmlFor="name" className="formLabel">Name of your game</label>
+            <input type="text" id="name" name="name" value={initialForm.name} onChange={handleInput} className="basicInput"/>
+            <label htmlFor="date" className="formLabel">Release date</label>
+            <input type="text" id="date" name="released" value={initialForm.released} onChange={handleInput} className="basicInput"/>
+            <label htmlFor="rating" className="formLabel">Rating</label>
+            <input type="number" id="rating" name="rating" value={initialForm.rating} onChange={handleInput} className="basicInput"/>
+            <label htmlFor="description" className="formLabel">Describe your game</label>
             <textarea value={initialForm.description} onChange={handleInput} name="description" id="description"></textarea>
             
-            <p>Genres</p>
+            <p className="checkboxes_title">Genres</p>
+                <section className="checkboxes">
                 {
                     genres && genres.map(g => (
-                        <section key={g.id}>
+                        <section className="genresCheck" key={g.id}>
                              <label htmlFor={g.name}>{g.name}</label>
                              <input type="checkbox" onChange={handleGenres} id={g.name} value={g.id} name="genres"/>
                         </section>
                        
                     ))
                 }
-            <p>Platforms</p>
-                {
+                </section>
+               
+            <p className="checkboxes_title">Platforms</p>
+             <section className="checkboxes">
+             {
                     platforms && platforms.map(p => (
-                        <section key={p}>
+                        <section className="platformsCheck" key={p}>
                              <label htmlFor={p}>{p}</label>
                              <input type="checkbox" onChange={handlePlatforms} id={p} value={p} name="platforms"/>
                         </section> ))
                 }
-            <button type="submit">Create Game</button>
+             </section>
+             <section className="buttonSection">
+                <button type="submit" className="creationButton">Create Game</button>
+             </section>
+            
         </form>
            <Link to={'/home'}>
-           <button className='returnButton'>Home</button>
-       </Link>
-        </main>
+                <button className='returnButton'>Go Home</button>
+           </Link>
+        </section>
         
+        </main>
+    
       
     )
 }

@@ -1,63 +1,49 @@
 
 import {useDispatch, useSelector} from 'react-redux'
-import {  alphabeticOrder, filterByGenre, loadingGames, orderByOrigin, orderByRating } from "../../store/actions"
+import {  alphabeticOrder, filterByCreated, filterByGenre, filterByOriginals, loadingGames, orderByLessLiked, orderByMostLiked, removeFilters, reverseAlphabeticOrder } from "../../store/actions"
 import { useEffect } from 'react'
-import { fetchGames, fetchGenres } from '../../store/thunks'
+import { fetchGenres } from '../../store/thunks'
+import './searchBar.css'
 export const SearchBar = () => {
     const dispatch = useDispatch()  
     useEffect(()=> {
-        dispatch(fetchGames())
         dispatch(fetchGenres())
-     }, [])
-    const games = useSelector(state => state.games)
-    const filteredGames = useSelector(state => state.newGames)
+     }, [dispatch])
     const genres = useSelector(state => state.genres)
     const handleSelect = ({target}) => {
-               target.value === 'A-Z' ? games.sort((a,b) => {
-                if(a.name > b.name) return 1
-                if(a.name < b.name) return -1
-                return 0
-            }) :  games.sort((a,b) => {
-                if(a.name > b.name) return -1
-                if(a.name < b.name) return 1
-                return 0
-            })
-            dispatch(alphabeticOrder(games))
-            dispatch(loadingGames())    
+        target.value === 'A-Z' ?
+        dispatch(alphabeticOrder()) :
+        dispatch(reverseAlphabeticOrder())
+              
 }
     const rankedGames = ({target}) => {
-        target.value === 'asc' ? games.sort((a,b) => a.rating-b.rating) :
-        games.sort((a,b) => b.rating-a.rating)
-        dispatch(orderByRating(games))
-        dispatch(loadingGames())
+        target.value === 'asc' ?
+           dispatch(orderByMostLiked()):
+           dispatch(orderByLessLiked())
     }
 
     const handleInput = ({target})=> {
-        if(target.value === 'original'){
-            const original = filteredGames.filter(g => typeof g.id === 'number')
-            console.log('original',original)
-            dispatch(orderByOrigin(original))
-           
-        } else {
-            const created = filteredGames.filter(g => g.id.toString().includes('-'))
-            console.log('created', created)
-            dispatch(orderByOrigin(created))
-            dispatch(loadingGames())
+        target.value === 'original' ? 
 
+            dispatch(filterByOriginals()) :
+            dispatch(filterByCreated())
         } 
+    
+
+    const handleGenresInput = ({target}) => {
+        dispatch(filterByGenre(target.value)) 
     }
 
-    const handleGenres = ({target}) => {
-        const gamesByGenre = games.filter(game => game.genres.find(g => g.name === target.value) )
-        dispatch(filterByGenre(gamesByGenre)) 
-        dispatch(loadingGames())
 
-        
+    const handleClick = (e) => {
+        dispatch(removeFilters())
     }
     return(
-        games ? ( <main>
-            <section>
-                <select name="genres" onChange={handleGenres}>
+        <main>
+            <section className='allFilters'>
+                <section>
+                <h4>Filter By Genre</h4>
+                <select name="genres" onChange={handleGenresInput}>
                     <option>Genres</option>
                     {
                         genres && genres.map(g => (
@@ -65,23 +51,40 @@ export const SearchBar = () => {
                         ))
                     }
                 </select>
-                <label htmlFor="original">Original</label>
-                <input type="radio" name="origin" value="original" id="original" onChange={handleInput}/>
-                <label htmlFor="created">Created</label>
-                <input type="radio" name="origin" value="created" id="created" onChange={handleInput}/>
+                </section>
+                <section>
+                <h4>Filter by Origin</h4>
+                <section>
+                    <label htmlFor="original">Original</label>
+                    <input type="radio" name="origin" value="original" id="original" onChange={handleInput}/>
+                </section>
+                <section>
+                    <label htmlFor="created">Created</label>
+                    <input type="radio" name="origin" value="created" id="created" onChange={handleInput}/>
+                </section>
+                </section>            
+
+                <section>
+                <h4>Alphabetical order</h4>
                 <select onChange={handleSelect}>
-                    <option>Filter by Name :</option>
+                    <option>From</option>
                     <option value="A-Z">A-Z</option>
                     <option value="Z-A">Z-A</option>
                 </select>
+                </section> 
+                <section>
+                <h4>Order by score</h4>
                 <select onChange={rankedGames}>
-                    <option>Filter by rating:</option>
+                    <option>Score</option>
                     <option value="desc">Best Rated Games</option>
                     <option value="asc">Worst Rated Games</option>
                 </select>
-
+                </section>
+                <section>
+                    <button onClick={handleClick}>Default</button>
+                </section>
             </section>
-        </main>) : ''
-       
+
+        </main>
     )
 }

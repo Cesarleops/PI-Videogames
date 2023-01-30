@@ -1,4 +1,60 @@
-.game-image {
-    width: 350px;
-    height: 350px;
+
+.gameCard{
+    background-color: #151b27;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.gameCard:hover{
+    transform: scale(0.95);
+    border: 1px solid #9d54de;
+}
+
+.gameInfo{
+ padding: 10px;
+}
+.gameName{
+    max-width: 180px;
+    line-break: normal;
+}
+.game_image {
+    width: 200px;
+    height: 200px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.genres_list{
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    max-width: 180px;
+    line-break: normal;
+    
+}
+
+.plusInfo{
+    color: #9d54de;
+}
+
+.missingCardIlustration{
+    width: 200px;
+    height: 200px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+a{
+    text-decoration: none;
+}
+
+ul{
+    padding: 0;
+}
+p{
+    margin: 0;
 }

@@ -6,18 +6,18 @@ export const Pagination = ({pages, paginate, prevPage, nextPage}) => {
      }
     return(
         <main className='pagination'>
-            <button onClick={prevPage}>Previous</button>
+            <button className='prevButton' onClick={prevPage}>Previous</button>
             <ul className="pages">
             {
                 pageNumber.map(page => (
                     <li key={page}>
-                        <button onClick={()=>paginate(page)}>{page}</button>
+                        <button className='pagesButton' onClick={()=>paginate(page)}>{page}</button>
                     </li>
                 ))
               }
             </ul>
              
-            <button onClick={nextPage}>Next</button>
+            <button className='nextButton' onClick={nextPage}>Next</button>
         </main>
     )
 }

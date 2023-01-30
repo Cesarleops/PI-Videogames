@@ -1,0 +1,12 @@
+.landing{
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: #090f1d;
+    
+}
+
+.landingPage__title{
+    margin:0
+}

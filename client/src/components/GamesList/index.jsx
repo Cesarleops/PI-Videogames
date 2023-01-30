@@ -1,11 +1,18 @@
-import { useState} from 'react'
-import { useSelector} from 'react-redux'
+import { useState, useEffect} from 'react'
+import { useSelector, useDispatch} from 'react-redux'
 import './games.css'
 import { GameCard } from '../GameCard'
 import { Pagination } from '../Pagination'
-export const GameList = () => {
+import { fetchGames } from '../../store/thunks'
 
+export const GameList = () => {
+    const dispatch = useDispatch()
     const games  = useSelector(state => state.games)
+    useEffect(()=> {
+        dispatch(fetchGames())
+        console.log('se volvio a renderizar')
+     }, [dispatch])
+    console.log(games)
     const [currentPage, setCurrentPage] = useState(1)
     const [gamesPerPage ]= useState(15)
     const lastGameIndex = currentPage * gamesPerPage
@@ -27,7 +34,7 @@ export const GameList = () => {
         }
      };
     return(
-        <main>
+        <main className='main_page'>
             <section className='games'>
                 {
                    currentGames && currentGames.map(game => <GameCard 

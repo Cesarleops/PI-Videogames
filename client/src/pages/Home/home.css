@@ -1,3 +1,63 @@
 .home {
-    padding: 20px;
+    background-color: #090f1d;
+    width: 100vw;
+    min-height: 100vh;
+    padding: 0;
+    margin: 0;
 }
+
+.navBar {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px;
+    background-color: #151b27;
+    border-bottom: 1px solid #9d54de;;
+    border-radius: 0px 0px 10px 10px;
+    margin-bottom: 20px;
+    gap: 100px;
+}
+
+.appTitle {
+    margin-left: 75px;
+    color: #9d54de ;
+}
+
+.search_container{
+    display: flex;
+    gap: 10px;
+}
+.filterBar{
+    display: flex;
+    justify-content: center;
+    
+
+}
+
+.cardList{
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+   
+    
+}
+
+.search_input{
+    width: 200px;
+    height: 20px;
+    border: 1px solid #9d54de;
+    border-radius: 10px;
+}
+
+
+.gameMakerButton{
+    border: 0.5px solid #151b27;
+    font-size: 15px ;
+    background-color: #9d54de;
+    cursor: pointer;
+    color: #9d54de ;
+    color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+}
+

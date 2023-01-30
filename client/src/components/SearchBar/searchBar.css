@@ -1,0 +1,22 @@
+.allFilters{
+    display: flex;
+    padding: 10px;
+    flex-direction: column;
+    gap: 40px;
+    margin-top: 20px;
+    width: 200px;
+    margin-left: 15px;
+    background-color: #151b27;
+    border-radius: 10px;
+    border: 1px solid #9d54de;
+}
+
+select {
+    border: none;
+    background-color: transparent;
+    color: #fff;
+}
+
+h4{
+    color: #9d54de;
+}

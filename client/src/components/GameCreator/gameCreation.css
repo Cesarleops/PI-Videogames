@@ -1,3 +1,79 @@
+
+.mainCreation{
+    height: 100vh;
+    width: 100vw;
+    background-color: #090f1d;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
 .gameCreation {
-    padding: 10px;
+    background-color: #151b27;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 10px;
+    height: 550px;
+    width: 500px;
+    padding: 15px;
+ 
+}
+
+.creationForm{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+
+.checkboxes{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.basicInput{
+    width: 200px;
+    border-radius: 5px;
+    border: none;
+}
+
+.checkboxes_title{
+    color: #9d54de;
+}
+
+.creationButton{
+    width: 120px;
+    height: 40px;
+    border: 0.5px solid #151b27;
+    font-size: 15px ;
+    background-color: #9d54de;
+    cursor: pointer;
+    padding: 3px;
+    border-radius: 10px;
+    color: #fff;
+}
+
+
+.buttonSection{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.formLabel{
+    color: #9d54de;
+}
+
+.returnButton{
+    width: 120px;
+    height: 30px;
+    border: 0.5px solid #151b27;
+    font-size: 15px ;
+    background-color: #9d54de;
+    cursor: pointer;
+    color: #fff;
+    
+    border-radius: 10px;
 }

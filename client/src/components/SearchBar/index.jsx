@@ -1,6 +1,6 @@
 
 import {useDispatch, useSelector} from 'react-redux'
-import {  alphabeticOrder, filterByCreated, filterByGenre, filterByOriginals, loadingGames, orderByLessLiked, orderByMostLiked, removeFilters, reverseAlphabeticOrder } from "../../store/actions"
+import {  alphabeticOrder, filterByCreated, filterByGenre, filterByOriginals, orderByLessLiked, orderByMostLiked, removeFilters, reverseAlphabeticOrder } from "../../store/actions"
 import { useEffect } from 'react'
 import { fetchGenres } from '../../store/thunks'
 import './searchBar.css'
@@ -11,14 +11,15 @@ export const SearchBar = () => {
      }, [dispatch])
     const genres = useSelector(state => state.genres)
     const handleSelect = ({target}) => {
-        target.value === 'A-Z' ?
-        dispatch(alphabeticOrder()) :
+        console.log(target.value)
+        target.value === 'A-Z' ? dispatch(alphabeticOrder())
+        :
         dispatch(reverseAlphabeticOrder())
-              
-}
+     
+    }
     const rankedGames = ({target}) => {
         target.value === 'asc' ?
-           dispatch(orderByMostLiked()):
+           dispatch(orderByMostLiked()) :
            dispatch(orderByLessLiked())
     }
 
@@ -55,12 +56,11 @@ export const SearchBar = () => {
                 <section>
                 <h4>Filter by Origin</h4>
                 <section>
-                    <label htmlFor="original">Original</label>
-                    <input type="radio" name="origin" value="original" id="original" onChange={handleInput}/>
-                </section>
-                <section>
-                    <label htmlFor="created">Created</label>
-                    <input type="radio" name="origin" value="created" id="created" onChange={handleInput}/>
+                    <select onChange={handleInput}>
+                    <option>Origins</option>
+                    <option value="original">Original</option> 
+                    <option value="created">Created</option> 
+                    </select> 
                 </section>
                 </section>            
 
@@ -81,7 +81,7 @@ export const SearchBar = () => {
                 </select>
                 </section>
                 <section>
-                    <button onClick={handleClick}>Default</button>
+                    <button className='defaultButton' onClick={handleClick}>Default</button>
                 </section>
             </section>
 

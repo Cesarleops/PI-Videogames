@@ -61,3 +61,21 @@
     border-radius: 10px;
 }
 
+.searchForm{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.searchButton{
+    border: 0.5px solid #151b27;
+    font-size: 15px ;
+    background-color: #9d54de;
+    cursor: pointer;
+    color: #9d54de ;
+    color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+

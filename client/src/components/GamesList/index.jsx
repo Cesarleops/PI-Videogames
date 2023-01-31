@@ -8,9 +8,10 @@ import { fetchGames } from '../../store/thunks'
 export const GameList = () => {
     const dispatch = useDispatch()
     const games  = useSelector(state => state.games)
+    const loader = useSelector(state => state.isLoading)
     useEffect(()=> {
         dispatch(fetchGames())
-        console.log('se volvio a renderizar')
+       
      }, [dispatch])
     console.log(games)
     const [currentPage, setCurrentPage] = useState(1)
@@ -34,6 +35,7 @@ export const GameList = () => {
         }
      };
     return(
+        loader ? <h1> cargando...</h1> :
         <main className='main_page'>
             <section className='games'>
                 {

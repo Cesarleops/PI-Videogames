@@ -14,13 +14,14 @@ export const rootReducer = (state=initialState,action) => {
         case 'LOADING_GAMES' : 
             return {
                  ...state,
-                 isLoading: !state.isLoading
+                 isLoading: true
             }
         case 'GET_GAMES':
             return {
                  ...state, 
                  games: action.payload,
-                 filteredGames: action.payload
+                 filteredGames: action.payload,
+                 isLoading: false 
             }
         
         case 'GET_GENRES' : 
@@ -36,7 +37,7 @@ export const rootReducer = (state=initialState,action) => {
         case 'ALPHABETIC_ORDER':
                 return {
                     ...state, 
-                    games: state.games.sort((a,b) => {
+                    games: [...state.filteredGames].sort((a,b) => {
                         if(a.name > b.name) return 1
                         if(a.name < b.name) return -1
                         return 0
@@ -45,7 +46,7 @@ export const rootReducer = (state=initialState,action) => {
         case "REVERSE_ALPHABETIC_ORDER":
             return {
                 ...state,
-                games: state.games.sort((a,b) => {
+                games: [...state.filteredGames].sort((a,b) => {
                     if(a.name > b.name) return -1
                     if(a.name < b.name) return 1
                     return 0
@@ -54,13 +55,13 @@ export const rootReducer = (state=initialState,action) => {
         case 'MOST_LIKED':
             return {
                  ...state, 
-                 games: state.games.sort((a,b) => a.rating-b.rating)
+                 games: [...state.filteredGames].sort((a,b) => a.rating-b.rating)
                         }
 
         case 'LESS_LIKED':
             return {
                ...state, 
-                games: state.games.sort((a,b) => b.rating-a.rating)
+                games: [...state.filteredGames].sort((a,b) => b.rating-a.rating)
                                         }
         case 'FILTER_BY_ORIGINALS':
             return {

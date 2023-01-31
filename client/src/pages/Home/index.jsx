@@ -22,10 +22,10 @@ export const Home = () => {
             <section className="navBar">
                 <h1 className="appTitle">AllGames</h1>
                 <div className="search_container">
-                    <form onSubmit={handleSubmit}>
+                    <form className="searchForm" onSubmit={handleSubmit}>
                     <label htmlFor="search">Search a game</label>
                     <input type="text" id="search" className="search_input" onChange={handleOnChange} value={name}/>
-                    <button type="submit">Go!</button>
+                    <button className="searchButton" type="submit">Go!</button>
                     </form>
                 </div>
                 <Link to="/createGame">

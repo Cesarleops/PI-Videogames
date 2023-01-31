@@ -1,4 +1,5 @@
 
+
 export const loadingGames = () => {
     return {
         type: 'LOADING_GAMES'
@@ -33,6 +34,7 @@ export const alphabeticOrder = () => {
 }
 
 export const reverseAlphabeticOrder = () => {
+  
     return {
         type: "REVERSE_ALPHABETIC_ORDER",
         

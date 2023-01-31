@@ -13,7 +13,7 @@
     background-color: #151b27;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     border-radius: 10px;
-    height: 550px;
+    min-height: 550px;
     width: 500px;
     padding: 15px;
  
@@ -76,4 +76,10 @@
     color: #fff;
     
     border-radius: 10px;
+}
+
+.errors {
+    color: red;
+    font-size: 13px;
+    margin:0
 }
